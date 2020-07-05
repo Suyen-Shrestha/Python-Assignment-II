@@ -3,24 +3,24 @@ class SuperMario:
     def __init__(self, playername, color):
         self.playername = playername
         self.color = color
-        print('Hello! It\'s me Mario!!')
+        print('\nHello! It\'s me Mario!!\n')
 
 
 
     def get_playerdetails(self):
-        print('Your player details: \n')
+        print('Your player details: ')
         print(f'PlayerName: {self.playername}')
-        print(f'MarioColor: {self.color}')
+        print(f'MarioColor: {self.color}\n')
 
 
-    def action(self,action):
+    def action(self):
         move = input("""Enter a move you want your mario to make:\n
                         'J' for jump
                         'D' for doublejump
                         'L' for moving left
                         'R' for moving right
                         'RL' for running left
-                        'RR' for running right """)
+                        'RR' for running right \n""").upper()
         if move in ("L","R"):
             self.walk(move)
         elif move in ("J","D"):
@@ -28,7 +28,7 @@ class SuperMario:
                 self.jump()
             else:
                 self.double_jump()    
-        if move in ("RL","RR"):
+        elif move in ("RL","RR"):
             self.run(move)
         else:
             print('Invalid action selected!')                            
@@ -48,7 +48,7 @@ class SuperMario:
 
     def double_jump(self):
 
-        print('Yippee!! Your Mario just duble jumped!!')
+        print('Yippee!! Your Mario just double jumped!!')
 
 
     def run(self,direction):
@@ -58,6 +58,7 @@ class SuperMario:
             print(f'Mario "{self.playername}" Running right...')                  
 
 
+exit = False
 
 name = input('Enter player name: ')
 color = input('Enter your mario\'s color: ')
@@ -65,7 +66,12 @@ color = input('Enter your mario\'s color: ')
 mario1 = SuperMario(name,color)
 mario1.get_playerdetails()
 
-option = input('Please enter an action you want your mario to perform next: ')
-mario1.action(option)
 
+while exit == False:
+    print('Do you wanna continue playing?(Y/N)')
+    yesno = input().upper()
 
+    if yesno == 'Y':
+        mario1.action()
+    else:
+        exit = True
